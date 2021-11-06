@@ -1,2 +1,3 @@
 # KOSBD-AES
-School project for "Methods of encoding, encrypting and data safety". 
+
+Implementujte symetrický šifrovací algoritmus s tajným kľúčom AES vo vašom vlastnom programe. Pri tejto implementácií použite programovací jazyk, v ktorom ste realizovali prvú. alebo druhú úlohu. Využiť môžete štandardné knižnice, ktoré ponúka daný jazyk, alebo dostupné rozšírenia pre tento jazyk. Zašifrovať musí byť možné aj dlhší text a minimálne TXT súbor aspoň do veľkosti 10 MB. Váš program musí byť schopný ponúknuť užívateľovi výber dĺžky šifrovacieho kľúča: 128/192/256 b. rôzne režimy (MIN. 2) pre prácu s blokmi otvoreného textu (vstupu) napr. CBC/CTS/XTS apod. a výber inicializačného vektora (MIN. 2) napr. plain64/ESSIV/benbi apod. Implementujte tiež dešifrovanie. Vstup a kľúč (heslo) musí zadávať užívateľ. Program musí byť interaktívny (GUI/konzola/webové rozhranie), dbajte na user friendly prostredie.
