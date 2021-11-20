@@ -4,7 +4,7 @@ function encrypt(message, key, iv) {
 
   var encrypted = CryptoJS.AES.encrypt(message, key, { iv: iv });
 
-  return message.toString();
+  return encrypted.toString();
 }
 
 function decrypt(message, key, iv) {
