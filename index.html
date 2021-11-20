@@ -27,41 +27,80 @@
 
         <div class="input-group">
             <span class="input-group-text">Message</span>
-            <textarea class="form-control" aria-label="With textarea"></textarea>
+            <textarea class="form-control" aria-label="With textarea" id="message" spellcheck="false"></textarea>
+        </div>
+
+        <form>
+            <div class="form-group">
+                <br for="exampleFormControlFile1">Load text file:</label></br>
+                <input type="file" class="form-control-file" id="exampleFormControlFile1" accept=".txt">
+            </div>
+        </form>
+
+
+        <div class="mb-3">
+            <label for="floatingInput" id="keyLabel">Key</label>
+            <input type="text" class="form-control" id="key" placeholder="Key" oninput="checkLength(this, '#keyLabel', 1)" spellcheck="false">
         </div>
 
         <div class="mb-3">
-            <input type="text" class="form-control" id="floatingInput" placeholder="Key">
+            <label for="iv" id="ivLabel">IV</label>
+            <input type="text" class="form-control" id="iv" placeholder="Initialization vector" oninput="checkLength(this, '#ivLabel', 2)" spellcheck="false">
+            <button type="button" class="btn btn-outline-secondary" id="ivButton">Random IV</button>
         </div>
 
-        <h3>Key: </h3>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-            <label class="form-check-label" for="inlineRadio1">128 b</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-            <label class="form-check-label" for="inlineRadio2">192 b</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-            <label class="form-check-label" for="inlineRadio3">256 b</label>
-        </div>
+        <h3>Key length: </h3>
+        <form id="form1">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="keyOptions" id="key128b" value="option1" checked>
+                <label class="form-check-label" for="key128b">128 b</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="keyOptions" id="key192b" value="option2">
+                <label class="form-check-label" for="key192b">192 b</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="keyOptions" id="key256b" value="option3">
+                <label class="form-check-label" for="key256b">256 b</label>
+            </div>
+        </form>
 
-        <div></div>
+        <h3>Mode: </h3>
+        <form id="form2">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="modeOptions" id="modeCBC" value="option1" checked>
+                <label class="form-check-label" for="modeCBC">CBC</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="modeOptions" id="modeCFB" value="option2">
+                <label class="form-check-label" for="modeCFB">CFB</label>
+            </div>
+        </form>
 
-        <button type="button" class="btn btn-primary btn-lg">Encode</button>
-        <button type="button" class="btn btn-secondary btn-lg">Decode</button>
+        </br>
+
+        <button type="button" class="btn btn-primary btn-lg" id="encode">Encode</button>
+        <button type="button" class="btn btn-secondary btn-lg" id="decode">Decode</button>
 
         <h3>Output: </h3>
-        <p class="text-start">encoded/decoded message</p>
+        <p class="text-start">encoded/decoded message:</p>
+        <div class="overflow-auto clearfix" id="output"></div>
 
+        <button type="button" class="btn btn-secondary btn-lg" id="download">download</button>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+        </svg>
+        <br>
+        <input type="text" name="name" id="filename" value="encoding info.txt" spellcheck="false">
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="libs/sjcl/sjcl.js"></script>
     <script src="js/encryption.js"></script>
+    <script src="js/pageLogic.js"></script>
+    <script src="js/test.js"></script>
 
 </body>
 

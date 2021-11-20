@@ -1,13 +1,25 @@
-function encrypt(message = "", key = "") {
-  var message = CryptoJS.AES.encrypt(message, key);
+function encrypt(message, key, iv) {
+  var key = CryptoJS.enc.Utf8.parse(key);
+  var iv = CryptoJS.enc.Utf8.parse(iv);
+
+  var encrypted = CryptoJS.AES.encrypt(message, key, { iv: iv });
+
   return message.toString();
 }
-function decrypt(message = "", key = "") {
-  var code = CryptoJS.AES.decrypt(message, key);
+
+function decrypt(message, key, iv) {
+  var key = CryptoJS.enc.Utf8.parse(key);
+  var iv = CryptoJS.enc.Utf8.parse(iv);
+
+  var code = CryptoJS.AES.decrypt(message, key, { iv: iv });
   var decryptedMessage = code.toString(CryptoJS.enc.Utf8);
 
   return decryptedMessage;
 }
 
-console.log(encrypt("Hello World"));
-console.log(decrypt("U2FsdGVkX1/0oPpnJ5S5XTELUonupdtYCdO91v+/SMs="));
+function encodeMessage(message) {
+  const encoder = new TextEncoder("UTF-8");
+  const view = encoder.encode(message);
+
+  return view;
+}
