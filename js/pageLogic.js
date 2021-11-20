@@ -75,7 +75,7 @@ $(document).ready(function () {
     usedMode =
       $("input[name=modeOptions]:checked", "#form2").val() === "option1"
         ? "CBC"
-        : "ECB";
+        : "CFB";
     downloadable = true;
   });
 
@@ -105,7 +105,7 @@ $(document).ready(function () {
     usedMode =
       $("input[name=modeOptions]:checked", "#form2").val() === "option1"
         ? "CBC"
-        : "ECB";
+        : "CBC";
     downloadable = true;
   });
 
