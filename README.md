@@ -8,10 +8,10 @@
   - Dále si uživatel vybírá mód, ve kterém bude provedeno zašifrování zprávy.
   - Pro zašifrování zprávy uživatel kliká na tlačítko *Encode*
   - Pod nápisem *encoded/decoded message* se objeví zašifrovaná podoba zprávy.
-  - Uživatel má možnost tlačítkem *Download* stáhnout veškeré informace o vykonaném procesu šifrování (uživatel si může pojmenovat soubor).
+  - Uživatel má možnost tlačítkem *Download* stáhnout potřebné informace o vykonaném procesu šifrování (uživatel si může pojmenovat soubor).
 
 - Dešifrování
-  - Uživatel vkládá zašifrovaný text do textového pole s označením *Message*.
+  - Uživatel vkládá zašifrovaný text do textového pole s označením *Message* (nebo načítá soubor se zašifrovanou zprávou a umaže vše až po počátek zašifrovaného textu).
   - Následně je třeba zadat korektní parametry klíče, inicializačního vektoru, délky klíče, módu.
   - Dešifruje se tlačítkem *Decode*.
   - Dešifrovaný text se objeví pod nápisem *encoded/decoded message*.
