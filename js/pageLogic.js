@@ -11,7 +11,6 @@ var keyLengthCheck = false;
 var ivLengthCheck = false;
 var downloadable = false;
 
-var usedKey;
 var usedIv;
 var usedMessage;
 var usedKeyLength;
@@ -69,7 +68,6 @@ $(document).ready(function () {
     $("#output").text(encrypted.toString());
 
     usedMessage = encrypted.toString();
-    usedKey = key;
     usedKeyLength = keyLength;
     usedIv = iv;
     usedMode =
@@ -99,7 +97,6 @@ $(document).ready(function () {
     $("#output").text(decrypted.toString(CryptoJS.enc.Utf8));
 
     usedMessage = decrypted.toString(CryptoJS.enc.Utf8);
-    usedKey = key;
     usedKeyLength = keyLength;
     usedIv = iv;
     usedMode =
@@ -112,9 +109,7 @@ $(document).ready(function () {
   $("#download").click(function () {
     if (!downloadable) return;
     content =
-      "Key: " +
-      usedKey +
-      "\nIV: " +
+      "IV: " +
       usedIv +
       "\nKey_length: " +
       usedKeyLength +
