@@ -168,6 +168,6 @@ input.addEventListener("change", function () {
       $("#message").text(e.target.result);
     });
 
-    reader.readAsBinaryString(myFile);
+    reader.readAsText(myFile);
   }
 });
