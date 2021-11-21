@@ -171,13 +171,12 @@ function setupFileSelect(fileSelector) {
         return;
       }
       if (!file.type.match("text.*")) {
-        alert("Error: The selected file does not appear to be a text.");
+        alert("Error: The selected file does not appear to be a text file.");
         return;
       }
       event.target.value = "";
       const reader = new FileReader();
       reader.addEventListener("load", (event) => {
-        console.log(event.target.result);
         $("#message").val(event.target.result);
       });
       reader.readAsText(file);
