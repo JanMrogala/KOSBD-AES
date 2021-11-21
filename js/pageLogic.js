@@ -158,16 +158,32 @@ function download(filename, text) {
 }
 
 var input = document.getElementById("exampleFormControlFile1");
+setupFileSelect(input);
 
-input.addEventListener("change", function () {
-  if (this.files && this.files[0]) {
-    var myFile = this.files[0];
-    var reader = new FileReader();
-
-    reader.addEventListener("load", function (e) {
-      $("#message").text(e.target.result);
+function setupFileSelect(fileSelector) {
+  if (window.FileList && window.File && window.FileReader) {
+    fileSelector.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (!file.type) {
+        alert(
+          "Error: The file type does not appear to be supported on this browser."
+        );
+        return;
+      }
+      if (!file.type.match("text.*")) {
+        alert("Error: The selected file does not appear to be a text.");
+        return;
+      }
+      event.target.value = "";
+      const reader = new FileReader();
+      reader.addEventListener("load", (event) => {
+        console.log(event.target.result);
+        $("#message").val(event.target.result);
+      });
+      reader.readAsText(file);
     });
-
-    reader.readAsText(myFile);
+  } else {
+    alert("Error: File reading did not load correctly.");
+    return;
   }
-});
+}
