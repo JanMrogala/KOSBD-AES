@@ -38,7 +38,6 @@ $(document).ready(function () {
       checkLength(document.getElementById("key"), "#keyLabel", 1);
       checkLength(document.getElementById("iv"), "#ivLabel", 2);
     }
-    console.log(keyLength);
   });
 
   $("#ivButton").click(function () {
@@ -177,7 +176,9 @@ function setupFileSelect(fileSelector) {
       event.target.value = "";
       const reader = new FileReader();
       reader.addEventListener("load", (event) => {
-        $("#message").val(event.target.result);
+        $("#message").val(
+          event.target.result.split("Message:")[1].replace(/\r?\n|\r/g, "")
+        );
       });
       reader.readAsText(file);
     });
