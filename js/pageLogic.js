@@ -176,9 +176,18 @@ function setupFileSelect(fileSelector) {
       event.target.value = "";
       const reader = new FileReader();
       reader.addEventListener("load", (event) => {
-        $("#message").val(
-          event.target.result.split("Message:")[1].replace(/\r?\n|\r/g, "")
-        );
+        let out = event.target.result;
+
+        if (
+          out.includes("IV:") &&
+          out.includes("Key_length:") &&
+          out.includes("Mode:") &&
+          out.includes("Message:")
+        ) {
+          $("#message").val(out.split("Message:")[1].replace(/\r?\n|\r/g, ""));
+        } else {
+          $("#message").val(out);
+        }
       });
       reader.readAsText(file);
     });
