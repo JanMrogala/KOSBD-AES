@@ -12,13 +12,15 @@
 
 - Dešifrování
   - Uživatel vkládá zašifrovaný text do textového pole s označením *Message* (nebo načítá soubor se zašifrovanou zprávou).
-  - Následně je třeba zadat korektní parametry klíče, inicializačního vektoru, délky klíče, módu.
+  - Následně je třeba zadat klíč. Inicializační vektor, délka klíče a mód šifrování jsou nastaveny z textového souboru, pokud jej uživatel nahrál (jinak manuálně).
   - Dešifruje se tlačítkem *Decode*.
   - Dešifrovaný text se objeví pod nápisem *encoded/decoded message*.
   - Uživatel má možnost stáhnout soubor obsahující dešifrovanou zprávu.
 
 ## Dokumentace zásadních funkcí:
 
+Použitá knihovna na šifrování: *CryptoJS*
+</br></br></br>
 funkce _encrypt_ se stará o zašifrování zprávy.
 
 - **vstup:** zpráva, klíč, inicializační vektor
@@ -35,6 +37,7 @@ function encrypt(message, key, iv) {
 }
 ```
 
+</br></br></br>
 funkce _decrypt_ se stará o dešifrování zprávy.
 
 - **vstup:** zašifrovaná zpráva, klíč, inicializační vektor
@@ -52,6 +55,7 @@ function decrypt(message, key, iv) {
 }
 ```
 
+</br></br></br>
 tento fragment kódu se stará o vytvoření náhodného inicializačního vektoru.
 
 ```
