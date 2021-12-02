@@ -16,9 +16,22 @@ var usedMessage;
 var usedKeyLength;
 var usedMode;
 
-iv.addEventListener("input", ivInput);
-
-function ivInput() {}
+function checkKeyLength() {
+  var selection = $("input[name=keyOptions]:checked", "#form1").val();
+  if (selection === "option1") {
+    keyLength = 128;
+    checkLength(document.getElementById("key"), "#keyLabel", 1);
+    checkLength(document.getElementById("iv"), "#ivLabel", 2);
+  } else if (selection === "option2") {
+    keyLength = 192;
+    checkLength(document.getElementById("key"), "#keyLabel", 1);
+    checkLength(document.getElementById("iv"), "#ivLabel", 2);
+  } else if (selection === "option3") {
+    keyLength = 256;
+    checkLength(document.getElementById("key"), "#keyLabel", 1);
+    checkLength(document.getElementById("iv"), "#ivLabel", 2);
+  }
+}
 
 $(document).ready(function () {
   $("#message").change(function () {});
@@ -185,9 +198,43 @@ function setupFileSelect(fileSelector) {
           out.includes("Message:")
         ) {
           $("#message").val(out.split("Message:")[1].replace(/\r?\n|\r/g, ""));
+          $("#iv").val(
+            out
+              .split("IV: ")[1]
+              .split("Key_length: ")[0]
+              .replace(/\r?\n|\r/g, "")
+          );
+          let kl = parseInt(
+            out
+              .split("Key_length: ")[1]
+              .split("Mode: ")[0]
+              .replace(/\r?\n|\r/g, "")
+          );
+          switch (kl) {
+            case 128:
+              $("#key128b").prop("checked", true);
+              break;
+            case 192:
+              $("#key192b").prop("checked", true);
+              break;
+            case 256:
+              $("#key256b").prop("checked", true);
+              break;
+          }
+          let md = out
+            .split("Mode: ")[1]
+            .split("Message: ")[0]
+            .replace(/\r?\n|\r/g, "");
+          if (md === "CBC") {
+            $("#modeCBC").prop("checked", true);
+          } else {
+            $("#modeCFB").prop("checked", true);
+          }
         } else {
           $("#message").val(out);
         }
+        checkKeyLength();
+        checkLength(document.getElementById("iv"), "#ivLabel", 2);
       });
       reader.readAsText(file);
     });
